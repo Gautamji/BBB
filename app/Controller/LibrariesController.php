@@ -2,6 +2,8 @@
 App::uses('CakeEmail', 'Network/Email');
 class LibrariesController extends AppController {
 
+   
+
     public $components = array('Session');
 
     
@@ -24,6 +26,8 @@ class LibrariesController extends AppController {
          if($this->request->is('get')){
             $this->loadModel('Library');
             $token=$this->request->query('token');
+           
+
             $token_row = $this->Library->find('first', array('conditions' => array('token' => $token) ));
             if($token_row){
                 $isEmailVerified=$token_row['Library']['email_verified'];
@@ -50,6 +54,19 @@ class LibrariesController extends AppController {
          }
     }
     public function register_unauth(){
+
+      
+
+        $columns = array_keys($this->Library->schema());
+        $fields = array();
+        foreach ( $columns as $key) {
+           $fields[$key] = array();
+           if(isset($this->request->data[$key]) ){
+            $fields[$key] = $this->request->data[$key];
+           };
+        } 
+        $this->set('fields', $fields);
+
         $this->layout = 'register';
         if($this->request->is('post')){
             $token = bin2hex(openssl_random_pseudo_bytes(16));
