@@ -41,7 +41,7 @@ class Library extends AppModel {
 		),
 		'phone' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('phone', "/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/"),
 				'message' => 'Enter valid phone number',
 				'allowEmpty' => false,
 				'required' => false,
@@ -63,8 +63,8 @@ class Library extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Please enter the name of the institute',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'allowEmpty' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -72,9 +72,9 @@ class Library extends AppModel {
 		'designation' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Please enter your designation',
+				'allowEmpty' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -82,9 +82,9 @@ class Library extends AppModel {
 		'library_name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Please enter the Library Name',
+				'allowEmpty' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
